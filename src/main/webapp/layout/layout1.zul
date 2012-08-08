@@ -1,0 +1,28 @@
+<?page title="Fluid Layouts"?>
+<zk>
+<style>
+.column1 .z-window-embedded-cnt {
+	background: #005DFF;
+	color: #FFFFFF;
+}
+.column2 .z-window-embedded-cnt {
+	background: #FF7A00;
+	color: #FFFFFF;
+}
+.column3 .z-window-embedded-cnt {
+	background: #417D00;
+	color: #FFFFFF;
+}
+</style>
+<hlayout vflex="1">
+<window title="Column 25%" vflex="1" hflex="1" sclass="column1" border="normal">
+toffee candy canes cheesecake gummies apple pie. Pie cupcake cheesecake sugar plum tart donut bear claw caramels. Sesame snaps candy candy faworki sesame snaps chocolate wypas cheesecake. Cupcake cupcake chupa chups dragée bonbon cotton candy pudding.
+</window>
+<window title="Column 25%" vflex="1" hflex="1" sclass="column2" border="normal">
+toffee candy canes cheesecake gummies apple pie. Pie cupcake cheesecake sugar plum tart donut bear claw caramels. Sesame snaps candy candy faworki sesame snaps chocolate wypas cheesecake. Cupcake cupcake chupa chups dragée bonbon cotton candy pudding.
+</window>
+<window title="Column 50%" vflex="1" hflex="2" sclass="column3" border="normal">
+toffee candy canes cheesecake gummies apple pie. Pie cupcake cheesecake sugar plum tart donut bear claw caramels. Sesame snaps candy candy faworki sesame snaps chocolate wypas cheesecake. Cupcake cupcake chupa chups dragée bonbon cotton candy pudding.
+</window>
+</hlayout>
+</zk>

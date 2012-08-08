@@ -1,0 +1,5 @@
+<zk>
+	<zscript>
+	execution.sendRedirect("layout/layout1.zul");
+	</zscript>
+</zk>

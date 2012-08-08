@@ -1,0 +1,156 @@
+<?page title="Responsive Design (Mix all)"?>
+<?link rel="stylesheet" type="text/css" href="/css/demo.css.dsp"?>
+<zk>
+	<zscript><![CDATA[
+void doOrientationChange(ClientInfoEvent evt) {
+	if ("portrait".equals(evt.getOrientation())) {
+		main.setWidth("100%");
+		if (evt.getDesktopWidth() < 640)
+			sv.setVisible(false);
+		Clients.resize(content);
+	} else {
+		if (!execution.isBrowser("mobile"))
+			main.setWidth("80%");
+		sv.setVisible(true);
+		Clients.resize(content);
+	}
+}
+public class Tweet {
+	String _author;
+	String _content;
+	public Tweet(String author, String content) {
+		_author = author;
+		_content = content;
+	}
+	public String getAuthor() {
+		return _author;
+	}
+	public String getIcon() {
+		return _author.toLowerCase();
+	}
+	public String getOwnerIcon() {
+		return "owner-icon " + getIcon(); 
+	}
+	public String getAuthorIcon() {
+		return "author-icon " + getIcon();
+	}
+	public String getContent() {
+		return _content;
+	}
+	public int getTweets() {
+		return new java.util.Random().nextInt(1000);
+	}
+	public int getFollowing() {
+		return new java.util.Random().nextInt(1000);
+	
+	}
+	public int getFollowers() {
+		return new java.util.Random().nextInt(1000);	
+	}
+}
+
+public class TweetsVM {
+	List _tweets = new ArrayList();
+	List _profiles = new ArrayList();
+	static String[] authors = {"Alien", "Astronauta", "Bombero", "Comisario", "Hiphopper", "Mimo", "Mounstruo"};
+	static String comment = org.zkoss.util.ArraysX.toString(authors);
+	public TweetsVM() {
+		for (int i = 0; i < 30; i++) {
+			_tweets.add(new Tweet(authors[i%7], comment));
+		}
+		for (int i = 0; i < 4; i++) {
+			_profiles.add(new Tweet(authors[i%7], comment));
+		}
+	}
+	public List getProfiles() {
+		return _profiles;
+	}
+	public List getTweets() {
+		return _tweets;
+	}
+}
+]]></zscript>
+	<tabbox id="main" sclass="main" width="${zk.mobile > 0 ? '100%' : '80%'}"
+		vflex="1" onClientInfo="doOrientationChange(event)" tabscroll="false"
+		apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('TweetsVM')">
+		<custom-attributes org.zkoss.zul.image.preload="true" />
+		<tabs>
+			<tab>
+				<caption>
+					<div sclass="home" />
+					Home
+				</caption>
+			</tab>
+			<tab>
+				<caption>
+					<image sclass="connect" />
+					Connect
+				</caption>
+			</tab>
+			<tab>
+				<caption>
+					<image sclass="discover" />
+					Discover
+				</caption>
+			</tab>
+		</tabs>
+		<tabpanels vflex="1" hflex="1">
+			<tabpanel vflex="1" hflex="1">
+				<hlayout id="content" sclass="main-content" vflex="1">
+					<scrollview id="sv" orient="vertical" vflex="1" hflex="1"
+						children="@init(vm.profiles)">
+						<template name="children" var="profile">
+							<groupbox mold="3d" sclass="profile" hflex="1">
+								<vlayout>
+									<hlayout>
+										<image sclass="@bind(profile.ownerIcon)" />
+										<vlayout>
+											<a sclass="fullname" label="@bind(profile.author)" />
+											<label value="View my profile page" style="color:gray" />
+										</vlayout>
+									</hlayout>
+									<hlayout sclass="status">
+										<div sclass="vbar first-vbar" hflex="1">
+											<label sclass="number" value="@bind(profile.tweets)" />
+											<separator />
+											<label sclass="text" value="TWEETS" />
+										</div>
+										<div sclass="vbar" hflex="1">
+											<label sclass="number" value="@bind(profile.following)" />
+											<separator />
+											<label sclass="text" value="FOLLOWING" />
+										</div>
+										<div sclass="vbar" hflex="1">
+											<label sclass="number" value="@bind(profile.followers)" />
+											<separator />
+											<label sclass="text" value="FOLLOWERS" />
+										</div>
+									</hlayout>
+									<textbox rows="2" placeholder="Compose new Tweet..."
+										multiline="true" hflex="1" />
+								</vlayout>
+							</groupbox>
+						</template>
+					</scrollview>
+					<listbox model="@load(vm.tweets)" vflex="1" hflex="1">
+						<template name="model" var="tweet">
+							<listitem>
+								<listcell>
+									<hlayout>
+										<image sclass="@load(tweet.authorIcon)" />
+										<div>
+											<label sclass="author" value="@load(tweet.author)" />
+											<separator />
+											<label sclass="content" multiline="true"
+												value="@load(tweet.content)" />
+										</div>
+									</hlayout>
+								</listcell>
+							</listitem>
+						</template>
+					</listbox>
+				</hlayout>
+			</tabpanel>
+		</tabpanels>
+	</tabbox>
+</zk>

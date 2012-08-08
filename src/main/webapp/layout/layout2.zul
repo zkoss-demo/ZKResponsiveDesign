@@ -1,0 +1,57 @@
+<?page title="Adaptive Layouts"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/theme" prefix="t"?>
+<zk>
+<style>
+.column1 .z-window-embedded-cnt {
+	background: #005DFF;
+	color: #FFFFFF;
+}
+.column2 .z-window-embedded-cnt {
+	background: #FF7A00;
+	color: #FFFFFF;
+}
+.column3 .z-window-embedded-cnt {
+	background: #417D00;
+	color: #FFFFFF;
+}
+.z-hlayout-inner {
+	${t:applyCSS3('box-sizing', 'border-box')};
+	height: 100%;
+}
+.z-hlayout-inner {
+	width: 25%;
+}
+.z-hlayout-inner:last-child {
+	width: 50%;
+}
+@media screen and (max-width: 1024px) {
+	.z-hlayout-inner {
+		width: 50%;
+		height: 50%;
+	}
+	.z-hlayout-inner:last-child {
+		width: 100%;
+		display: block;
+	}
+}
+ 
+@media screen and (max-width: 750px) {
+	.z-hlayout-inner {
+		width: 100%;
+		height: 33%;
+		display: block;
+	}
+}
+</style>
+<hlayout vflex="1">
+<window title="Column 25%" height="100%" sclass="column1" border="normal">
+toffee candy canes cheesecake gummies apple pie. Pie cupcake cheesecake sugar plum tart donut bear claw caramels. Sesame snaps candy candy faworki sesame snaps chocolate wypas cheesecake. Cupcake cupcake chupa chups dragée bonbon cotton candy pudding.
+</window>
+<window title="Column 25%" height="100%" sclass="column2" border="normal">
+toffee candy canes cheesecake gummies apple pie. Pie cupcake cheesecake sugar plum tart donut bear claw caramels. Sesame snaps candy candy faworki sesame snaps chocolate wypas cheesecake. Cupcake cupcake chupa chups dragée bonbon cotton candy pudding.
+</window>
+<window title="Column 50%" height="100%" sclass="column3" border="normal">
+toffee candy canes cheesecake gummies apple pie. Pie cupcake cheesecake sugar plum tart donut bear claw caramels. Sesame snaps candy candy faworki sesame snaps chocolate wypas cheesecake. Cupcake cupcake chupa chups dragée bonbon cotton candy pudding.
+</window>
+</hlayout>
+</zk>
