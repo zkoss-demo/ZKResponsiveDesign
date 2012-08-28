@@ -41,51 +41,32 @@ body {
 	font-family: Arial,sans-serif;
 	font-size: 12px;	
 }
-.main-content {
+.main-content,
+.connects > div,
+.stories > div {
 	max-height: 750px;
 }
-.home:before {
-	content: "zk";
-	position: absolute;
-	font: 18px/9px "Palatino Linotype", Georgia, "Book Antiqua", serif;
-	color: rgba(0, 0, 0, 0.2);
-	font-weight: ${zk.mobile > 0 ? 'normal' : 'bold'};
-	top: 7px;
-	left: 5px;
-}
 .home {
-	display: inline-block;
-	position: relative;
-	height: 24px;
-	width: 32px;
-	background: ${t:gradValue('ver', '#02ABDE 0%; #007497 100%')};
+	background: url(${c:encodeURL('/images/icons/icon_zk.png')}) no-repeat center center,
+		${t:gradValue('ver', '#02ABDE 0%; #007497 100%')};
 	${t:borderRadius('5px')};
 	cursor: pointer;
-}
-.home:after {
-	content: "+";
-	height: 12px;
-	width: 15px;
-	padding-left: 10px;
-	font: 22px/24px "Palatino Linotype", Georgia, "Book Antiqua", serif;
-	position: absolute;
-	color: rgba(0, 0, 0, 0.2);
-	top: -6px;
-	left: 7px;
-}
-.z-tab-seld .home:before,
-.z-tab-seld .home:after {
-	color: white;
 }
 .connect {
 	background: url(${c:encodeURL('/images/icons/icon_friendrequests.png')}) no-repeat center center,
 		${t:gradValue('ver', '#02ABDE 0%; #007497 100%')};
 	${t:borderRadius('5px')};
+	cursor: pointer;
 }
 .discover {
 	background: url(${c:encodeURL('/images/icons/icon_messagestop.png')}) no-repeat center center,
 		${t:gradValue('ver', '#02ABDE 0%; #007497 100%')};
 	${t:borderRadius('5px')};
+	cursor: pointer;
+}
+.z-tab-seld .home {	
+	background: url(${c:encodeURL('/images/icons/icon_zk_white.png')}) no-repeat center center,
+		${t:gradValue('ver', '#02ABDE 0%; #007497 100%')};
 }
 .z-tab-seld .connect {	
 	background: url(${c:encodeURL('/images/icons/icon_friendrequests_white.png')}) no-repeat center center,
@@ -101,6 +82,18 @@ body {
 	margin: 10px;
 	width: 48px;
 	height: 48px;
+}
+.connects .author-icon {
+	${t:boxShadow('2px 2px 7px #84d89d, -2px -2px 7px #84d89d')};
+}
+.stories .author-icon {
+	${t:borderRadius('2px')};
+	background-size: 24px 24px;
+	${t:boxShadow('none')};
+	width: 24px;
+	height: 24px;
+	margin: 0 2px;
+	vertical-align: middle;
 }
 .author {
 	color: #555555;
@@ -160,7 +153,7 @@ body {
 	body {
 		margin: 0;
 		padding: 0;
-		${t:gradient('ver', '#cedce7 0%;#596a72 100%')};
+		${t:gradient('ver', '#90caee 0%;#e2f3fd 100%')};
 	}
 	.z-tabs-header {
 		height: auto;
@@ -191,22 +184,13 @@ body {
 	td.z-caption-r {
 		text-align: center;
 	}
-	.main-content {
+	.main-content,
+	.connects > div,
+	.stories > div {
 		max-height: 2048px;
 	}
-	.z-tab .home {
-		background: transparent;
-	}
-	.z-tab-seld .home {
-		background: ${t:gradValue('ver', '#02ABDE 0%; #007497 50%; #02ABDE 100%')};
-	}
-	.home:before {
-		top: 12px;
-		left: 25px;
-	}
-	.home:after {
-		top: -1px;
-		left: 30px;
+	.home {
+		background: url(${c:encodeURL('/images/icons/icon_zk_white.png')}) no-repeat center center;
 	}
 	.connect {
 		background: url(${c:encodeURL('/images/icons/icon_friendrequests_white.png')}) no-repeat center center;
@@ -215,14 +199,13 @@ body {
 		background: url(${c:encodeURL('/images/icons/icon_messagestop_white.png')}) no-repeat center center;
 	}
 	
-	.z-tab .z-image,
-	.z-tab .home {
+	.z-tab .z-image {
 		height: 32px;
 		line-height: 28px;
 		width: 80px;
 	}
 	tr.z-listbox-odd {
-		${t:gradient('ver', '#cedce7 0%;#596a72 100%')};
+		${t:gradient('ver', '#e1e1e1 0%;#e1e1e1 100%')};
 	}
 	.z-scrollview-content-ver:first-child .profile {
 		margin: 10px;
@@ -239,7 +222,9 @@ body {
 }
  
 @media screen and (orientation:portrait) and (max-width: 720px) {
-	.main-content {
+	.main-content,
+	.connects > div,
+	.stories > div {
 		max-height: 1024px;
 	}
 	.z-tabs-cnt > li.z-tab,
@@ -250,19 +235,10 @@ body {
 		width: 80px;
 		height: 32px;
 	}
-	.z-tab .z-image,
-	.z-tab .home {
+	.z-tab .z-image {
 		height: 32px;
 		line-height: 28px;
 		width: 60px;
-	}
-	.home:before {
-		top: 12px;
-		left: 20px;
-	}
-	.home:after {
-		top: -1px;
-		left: 25px;
 	}
 	.main-content > .z-hlayout-inner:first-child {
 		display: none;

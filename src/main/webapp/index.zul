@@ -1,5 +1,5 @@
+<?page title="ZK Tweet"?>
+<?link rel="stylesheet" type="text/css" href="/css/demo.css.dsp"?>
 <zk>
-	<zscript>
-	execution.sendRedirect("layout/layout1.zul");
-	</zscript>
+<include src="layout/layout3.zul" instant="true"/>
 </zk>

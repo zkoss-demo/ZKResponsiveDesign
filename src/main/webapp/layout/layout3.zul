@@ -1,7 +1,12 @@
-<?page title="Responsive Design (Mix all)"?>
+<?page title="ZK Tweet"?>
 <?link rel="stylesheet" type="text/css" href="/css/demo.css.dsp"?>
 <zk>
 	<zscript><![CDATA[
+	import org.zkoss.zk.ui.util.*;
+	
+if (execution.isBrowser("ie")) {
+	Clients.showNotification("Internet Explorer doesn't support in this demo!");
+}
 void doOrientationChange(ClientInfoEvent evt) {
 	if ("portrait".equals(evt.getOrientation())) {
 		main.setWidth("100%");
@@ -51,15 +56,28 @@ public class Tweet {
 
 public class TweetsVM {
 	List _tweets = new ArrayList();
+	List _connects = new ArrayList();
+	List _stories = new ArrayList();
 	List _profiles = new ArrayList();
 	static String[] authors = {"Alien", "Astronauta", "Bombero", "Comisario", "Hiphopper", "Mimo", "Mounstruo"};
-	static String comment = org.zkoss.util.ArraysX.toString(authors);
+	static String[] comments = {
+		"ZK 6.5's responsive design enables you to use the same set of components & have it run everywhere, 	desktop & tablet!",
+		"Top Contributor Simon Massey talks about implementing event-driven GUI patterns with ZK on IBM developerWorks",
+		"ZK 6.5 & Tablet UI Design: Design UI that take advantage of tablet-specific user interaction methods.See Demo Now!",
+		"Check out this small talk to know how to apply MVVM pattern in Java if you prefer to create application UI using pure Java ...",
+		"This small talk will show how to use MVVM pattern within a Richlet to create your application UI using pure Java",
+		"Follow us on the ZK official G+ page to get newest updates!",
+		"If you haven't already, come check out ZK 6.5 & responsive design Demo!! Don't miss out on this one!!!",
+		"ZK 6.0.2 Released! Supporting development in OSGi environment with few changes in ZK Bind specifications"
+	};
 	public TweetsVM() {
 		for (int i = 0; i < 30; i++) {
-			_tweets.add(new Tweet(authors[i%7], comment));
+			_tweets.add(new Tweet(authors[i%7], comments[i%7]));
+			_connects.add(new Tweet(authors[(i+3)%7], comments[(i+3)%7]));
+			_stories.add(new Tweet(authors[(i+5)%7], comments[(i+5)%7]));
 		}
 		for (int i = 0; i < 4; i++) {
-			_profiles.add(new Tweet(authors[i%7], comment));
+			_profiles.add(new Tweet(authors[i%7], comments[i%7]));
 		}
 	}
 	public List getProfiles() {
@@ -68,16 +86,22 @@ public class TweetsVM {
 	public List getTweets() {
 		return _tweets;
 	}
+	public List getConnects() {
+		return _connects;
+	}
+	public List getStories() {
+		return _stories;
+	}
 }
 ]]></zscript>
-	<tabbox id="main" sclass="main" width="${zk.mobile > 0 ? '100%' : '80%'}"
+	<tabbox xmlns:ca="client/attribute" ca:data-swipeable="true" id="main" sclass="main" width="${zk.mobile > 0 ? '100%' : '80%'}"
 		vflex="1" onClientInfo="doOrientationChange(event)" tabscroll="false"
 		apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('TweetsVM')">
 		<custom-attributes org.zkoss.zul.image.preload="true" />
 		<tabs>
 			<tab>
 				<caption>
-					<div sclass="home" />
+					<image sclass="home" />
 					Home
 				</caption>
 			</tab>
@@ -132,7 +156,7 @@ public class TweetsVM {
 							</groupbox>
 						</template>
 					</scrollview>
-					<listbox model="@load(vm.tweets)" vflex="1" hflex="1">
+					<listbox model="@load(vm.connects)" vflex="1" hflex="1">
 						<template name="model" var="tweet">
 							<listitem>
 								<listcell>
@@ -151,6 +175,61 @@ public class TweetsVM {
 					</listbox>
 				</hlayout>
 			</tabpanel>
+			<tabpanel sclass="connects" vflex="1" hflex="1">
+				<listbox model="@load(vm.stories)" vflex="1" hflex="1">
+					<template name="model" var="tweet">
+						<listitem>
+							<listcell>
+								<hlayout>
+									<image sclass="@load(tweet.authorIcon)" />
+									<div>
+										<label sclass="author" value="@load(tweet.author)" />
+										<label style="color:gray;font-style:italy" value="@zkoss" />
+										<separator />
+										<label sclass="content" multiline="true"
+											value="@load(tweet.content)" />
+									</div>
+								</hlayout>
+							</listcell>
+						</listitem>
+					</template>
+				</listbox>
+			</tabpanel>
+			<tabpanel sclass="stories" vflex="1" hflex="1">
+				<listbox model="@load(vm.tweets)" vflex="1" hflex="1">
+					<template name="model" var="tweet">
+						<listitem>
+							<listcell>
+								<hlayout>
+									<div>
+										<separator />
+										<label sclass="content" multiline="true"
+											value="@load(tweet.content)" />
+										<separator />
+										<image sclass="@load(tweet.authorIcon)" />
+										<label style="color:gray;" value="Tweeted by " />
+										<label style="color:gray;font-weight:bold" value="ZKoss" />
+									</div>
+								</hlayout>
+							</listcell>
+						</listitem>
+					</template>
+				</listbox>
+			</tabpanel>
 		</tabpanels>
 	</tabbox>
+<script if='${execution.serverName == "www.zkoss.org" or execution.serverName == "www.potix.com"}'><![CDATA[
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-121377-3']);
+  _gaq.push(['_setDomainName', 'zkoss.org']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+]]></script>
 </zk>
