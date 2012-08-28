@@ -1,5 +1,5 @@
 <?page title="ZK Tweet"?>
 <?link rel="stylesheet" type="text/css" href="/css/demo.css.dsp"?>
 <zk>
-<include src="layout/layout3.zul" instant="true"/>
+<include src="layout/layout3.zul" onClientInfo="doOrientationChange(event)" instant="true"/>
 </zk>
