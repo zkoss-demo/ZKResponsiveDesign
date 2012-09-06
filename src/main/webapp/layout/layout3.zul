@@ -4,8 +4,9 @@
 	<zscript><![CDATA[
 	import org.zkoss.zk.ui.util.*;
 	
-if (execution.isBrowser("ie")) {
-	Clients.showNotification("Internet Explorer doesn't support in this demo!");
+if (execution.isBrowser("ie7-")) {
+	System.out.println(execution.isBrowser("ie7-"));
+	Clients.showNotification("Internet Explorer 6/7 doesn't support in this demo!");
 }
 void doOrientationChange(ClientInfoEvent evt) {
 	if ("portrait".equals(evt.getOrientation())) {

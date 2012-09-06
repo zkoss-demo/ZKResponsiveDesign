@@ -7,6 +7,9 @@ body {
 	background: ${t:gradValue('ver', '#007497 0%; #007497 35px; transparent 35px; transparent 100%')},
 		url(${c:encodeURL('/images/icons/background.png')}) center 36px;
 	</c:if>
+	<c:if test="${zk.ie <= 9}">
+	background: url(${c:encodeURL('/images/icons/background-ie.png')}) center 36px;
+	</c:if>
 }
 .z-tabs-header {
 	height: 36px;
@@ -49,32 +52,52 @@ body {
 .home {
 	background: url(${c:encodeURL('/images/icons/icon_zk.png')}) no-repeat center center,
 		${t:gradValue('ver', '#02ABDE 0%; #007497 100%')};
+	<c:if test="${zk.ie <= 9}">
+		background: url(${c:encodeURL('/images/icons/icon_zk.png')}) no-repeat center center;
+	</c:if>
 	${t:borderRadius('5px')};
 	cursor: pointer;
 }
 .connect {
 	background: url(${c:encodeURL('/images/icons/icon_friendrequests.png')}) no-repeat center center,
 		${t:gradValue('ver', '#02ABDE 0%; #007497 100%')};
+	<c:if test="${zk.ie <= 9}">
+		background: url(${c:encodeURL('/images/icons/icon_friendrequests.png')}) no-repeat center center;
+	</c:if>
 	${t:borderRadius('5px')};
 	cursor: pointer;
 }
 .discover {
 	background: url(${c:encodeURL('/images/icons/icon_messagestop.png')}) no-repeat center center,
 		${t:gradValue('ver', '#02ABDE 0%; #007497 100%')};
+	<c:if test="${zk.ie <= 9}">
+		background: url(${c:encodeURL('/images/icons/icon_messagestop.png')}) no-repeat center center;
+	</c:if>
 	${t:borderRadius('5px')};
 	cursor: pointer;
 }
 .z-tab-seld .home {	
 	background: url(${c:encodeURL('/images/icons/icon_zk_white.png')}) no-repeat center center,
 		${t:gradValue('ver', '#02ABDE 0%; #007497 100%')};
+		
+	<c:if test="${zk.ie <= 9}">
+	background: url(${c:encodeURL('/images/icons/icon_zk_blue.png')}) no-repeat center center;
+	</c:if>
 }
 .z-tab-seld .connect {	
 	background: url(${c:encodeURL('/images/icons/icon_friendrequests_white.png')}) no-repeat center center,
 		${t:gradValue('ver', '#02ABDE 0%; #007497 100%')};
+		
+	<c:if test="${zk.ie <= 9}">
+	background: url(${c:encodeURL('/images/icons/icon_friendrequests_blue.png')}) no-repeat center center;
+	</c:if>
 }
 .z-tab-seld .discover {	
 	background: url(${c:encodeURL('/images/icons/icon_messagestop_white.png')}) no-repeat center center,
 		${t:gradValue('ver', '#02ABDE 0%; #007497 100%')};
+	<c:if test="${zk.ie <= 9}">
+	background: url(${c:encodeURL('/images/icons/icon_messagestop_blue.png')}) no-repeat center center;
+	</c:if>
 }
 .author-icon {
 	${t:borderRadius('50px')};
