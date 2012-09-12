@@ -13,13 +13,12 @@ void doOrientationChange(ClientInfoEvent evt) {
 		main.setWidth("100%");
 		if (evt.getDesktopWidth() < 640)
 			sv.setVisible(false);
-		Clients.resize(content);
 	} else {
 		if (!execution.isBrowser("mobile"))
 			main.setWidth("80%");
 		sv.setVisible(true);
-		Clients.resize(content);
 	}
+	Clients.resize(main);
 }
 public class Tweet {
 	String _author;
