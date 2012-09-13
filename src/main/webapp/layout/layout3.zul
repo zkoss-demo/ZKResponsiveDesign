@@ -160,12 +160,12 @@ public class TweetsVM {
 						<template name="model" var="tweet">
 							<listitem>
 								<listcell>
-									<hlayout>
+									<hlayout hflex="1">
 										<image sclass="@load(tweet.authorIcon)" />
-										<div>
+										<div hflex="1">
 											<label sclass="author" value="@load(tweet.author)" />
 											<separator />
-											<label sclass="content" multiline="true"
+											<label width="90%" sclass="content" multiline="true"
 												value="@load(tweet.content)" />
 										</div>
 									</hlayout>
@@ -182,11 +182,11 @@ public class TweetsVM {
 							<listcell>
 								<hlayout>
 									<image sclass="@load(tweet.authorIcon)" />
-									<div>
+									<div hflex="1">
 										<label sclass="author" value="@load(tweet.author)" />
 										<label style="color:gray;font-style:italy" value="@zkoss" />
 										<separator />
-										<label sclass="content" multiline="true"
+										<label width="90%" sclass="content" multiline="true"
 											value="@load(tweet.content)" />
 									</div>
 								</hlayout>
@@ -201,9 +201,9 @@ public class TweetsVM {
 						<listitem>
 							<listcell>
 								<hlayout>
-									<div>
+									<div hflex="1">
 										<separator />
-										<label sclass="content" multiline="true"
+										<label width="90%" sclass="content" multiline="true"
 											value="@load(tweet.content)" />
 										<separator />
 										<image sclass="@load(tweet.authorIcon)" />
