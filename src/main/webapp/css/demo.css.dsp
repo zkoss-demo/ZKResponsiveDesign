@@ -188,7 +188,7 @@ body {
 		${t:boxShadow('none')};
 		border: 0;
 		width: 128px;
-		height: 32px;
+		height: 47px;
 	}
 	.z-tab .z-label {
 		display: none;
@@ -223,7 +223,7 @@ body {
 	}
 	
 	.z-tab .z-image {
-		height: 32px;
+		height: 47px;
 		line-height: 28px;
 		width: 80px;
 	}
@@ -256,10 +256,10 @@ body {
 		${t:boxShadow('none')};
 		border: 0;
 		width: 80px;
-		height: 32px;
+		height: 47px;
 	}
 	.z-tab .z-image {
-		height: 32px;
+		height: 47px;
 		line-height: 28px;
 		width: 60px;
 	}
