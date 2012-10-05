@@ -1,5 +1,6 @@
 <?page title="ZK Tweet"?>
 <?link rel="stylesheet" type="text/css" href="/css/demo.css.dsp"?>
+<?script type="text/javascript" src="/zktweet-js.dsp?v=${desktop.webApp.build}"?>
 <zk>
 <include vflex="1" src="layout/layout3.zul" onClientInfo="doOrientationChange(event)" instant="true"/>
 </zk>

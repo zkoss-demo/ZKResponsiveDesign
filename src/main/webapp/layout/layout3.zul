@@ -8,7 +8,9 @@ if (execution.isBrowser("ie7-")) {
 	System.out.println(execution.isBrowser("ie7-"));
 	Clients.showNotification("Internet Explorer 6/7 doesn't support in this demo!");
 }
+boolean firsttime = true;
 void doOrientationChange(ClientInfoEvent evt) {
+	
 	if ("portrait".equals(evt.getOrientation())) {
 		main.setWidth("100%");
 		if (evt.getDesktopWidth() < 640)
@@ -18,7 +20,9 @@ void doOrientationChange(ClientInfoEvent evt) {
 			main.setWidth("80%");
 		sv.setVisible(true);
 	}
-	Clients.resize(main);
+	if (!firsttime)
+		Clients.resize(main);
+	firsttime = false;
 }
 public class Tweet {
 	String _author;
@@ -97,7 +101,7 @@ public class TweetsVM {
 	<tabbox xmlns:ca="client/attribute" ca:data-swipeable="true" id="main" sclass="main" width="${zk.mobile > 0 ? '100%' : '80%'}"
 		vflex="1" onClientInfo="doOrientationChange(event)" tabscroll="false"
 		apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('TweetsVM')">
-		<custom-attributes org.zkoss.zul.image.preload="true" />
+	<!-- 	<custom-attributes org.zkoss.zul.image.preload="true" /> -->
 		<tabs>
 			<tab>
 				<caption>
@@ -160,7 +164,7 @@ public class TweetsVM {
 						<template name="model" var="tweet">
 							<listitem>
 								<listcell>
-									<hlayout hflex="1">
+									<hlayout>
 										<image sclass="@load(tweet.authorIcon)" />
 										<div hflex="1">
 											<label sclass="author" value="@load(tweet.author)" />
@@ -200,17 +204,14 @@ public class TweetsVM {
 					<template name="model" var="tweet">
 						<listitem>
 							<listcell>
-								<hlayout>
-									<div hflex="1">
-										<separator />
-										<label width="90%" sclass="content" multiline="true"
-											value="@load(tweet.content)" />
-										<separator />
-										<image sclass="@load(tweet.authorIcon)" />
-										<label style="color:gray;" value="Tweeted by " />
-										<label style="color:gray;font-weight:bold" value="ZKoss" />
-									</div>
-								</hlayout>
+								<div>
+									<label width="90%" sclass="content" multiline="true"
+										value="@load(tweet.content)" />
+									<separator />
+									<image sclass="@load(tweet.authorIcon)" />
+									<label style="color:gray;" value="Tweeted by " />
+									<label style="color:gray;font-weight:bold" value="ZKoss" />
+								</div>
 							</listcell>
 						</listitem>
 					</template>
@@ -219,17 +220,23 @@ public class TweetsVM {
 		</tabpanels>
 	</tabbox>
 <script if='${execution.serverName == "www.zkoss.org" or execution.serverName == "www.potix.com"}'><![CDATA[
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
 
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-121377-3']);
-  _gaq.push(['_setDomainName', 'zkoss.org']);
-  _gaq.push(['_trackPageview']);
+var gafn = function () {
+if (window._gat) {
+	gafn = null;
+	try {
+		var pageTracker = _gat._getTracker("UA-121377-3");
+		pageTracker._setDomainName("zkoss.org");
+		pageTracker._initData();
+		pageTracker._trackPageview();
 
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
+	} catch (e) {
+	}
+} else
+	setTimeout(gafn, 1000);
+};
+gafn();
 ]]></script>
 </zk>
