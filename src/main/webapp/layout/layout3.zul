@@ -18,7 +18,8 @@ void doOrientationChange(ClientInfoEvent evt) {
 	} else {
 		if (!execution.isBrowser("mobile"))
 			main.setWidth("80%");
-		sv.setVisible(true);
+		else
+			sv.setVisible(false);
 	}
 	if (!firsttime)
 		Clients.resize(main);
